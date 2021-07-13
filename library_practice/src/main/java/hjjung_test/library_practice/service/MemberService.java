@@ -2,6 +2,8 @@ package hjjung_test.library_practice.service;
 
 import hjjung_test.library_practice.domain.Member;
 import hjjung_test.library_practice.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +13,11 @@ import java.util.Optional;
 // 반대로, respository 등은 좀 더 개발자스럽게(?)_기계적으로 네이밍
 
 // ** cf. 테스트를 바로 만들기 위해서는 Ctrl + Shift + T
+@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
