@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.*;
 
 // ** 각 테스트는 서로 의존하지 않아야 한다!
 public class MemoryMemberRepositoryTest {
-
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
     // 각 테스트의 순서가 보장되지 않음

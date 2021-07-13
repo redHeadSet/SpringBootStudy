@@ -2,7 +2,6 @@ package hjjung_test.library_practice.service;
 
 import hjjung_test.library_practice.domain.Member;
 import hjjung_test.library_practice.repository.MemberRepository;
-import hjjung_test.library_practice.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +10,13 @@ import java.util.Optional;
 // 그래야 기획 쪽과 얘기할 때 매칭하기 쉬움
 // 반대로, respository 등은 좀 더 개발자스럽게(?)_기계적으로 네이밍
 
+// ** cf. 테스트를 바로 만들기 위해서는 Ctrl + Shift + T
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     // 회원 가입
     public Long Join(Member member){
