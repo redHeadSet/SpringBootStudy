@@ -13,11 +13,13 @@ import java.util.Optional;
 // 반대로, respository 등은 좀 더 개발자스럽게(?)_기계적으로 네이밍
 
 // ** cf. 테스트를 바로 만들기 위해서는 Ctrl + Shift + T
-@Service
+
+
+//@Service -> annotaion을 지우고, SpringConfig.java 쪽으로 이동해보자
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    @Autowired
+//    @Autowired -> annotaion을 지우고, SpringConfig.java 쪽으로 이동해보자
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
