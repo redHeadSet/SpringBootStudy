@@ -5,6 +5,7 @@ import hjjung_test.library_practice.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,9 @@ import java.util.Optional;
 
 
 //@Service -> annotaion을 지우고, SpringConfig.java 쪽으로 이동해보자
+
+@Transactional
+// JPA는 반드시 트랜젝션이 필요하다! : 조회 외 회원가입에만 해줘도 되긴 함
 public class MemberService {
     private final MemberRepository memberRepository;
 
