@@ -1,5 +1,6 @@
 package hjjung_test.library_practice;
 
+import hjjung_test.library_practice.AOP.TimeTraceAop;
 import hjjung_test.library_practice.repository.*;
 import hjjung_test.library_practice.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,23 +22,38 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 //    private final DataSource dataSource;
-    private EntityManager em;
+//    private EntityManager em;
+//
+//    @Autowired
+//    public SpringConfig(EntityManager em) {
+//        this.em = em;
+//    }
+
+    // SpringDataJpa 연결 - 아래줄과 함께 Bean에 등록하면 됨 + MemberService 와 의존 관계를 설정하면 됨
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository)
+    {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository() {
+//    @Bean
+//    public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource);
 //        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
+//        return new JpaMemberRepository(em);
+//    }
+
+    // AOP 등록 - 컴포넌트 스캔을 해도 상관은 없음
+    @Bean
+    public TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
     }
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
@@ -25,6 +26,7 @@ class MemberServiceIntegrationTest {
 
     // 테스트는 함수명을 한글로 적어도 됨!
     @Test
+    // @Commit 커밋 넣은 경우, 처리 후 commit 추가하여 처리함
     public void 회원가입() throws Exception{
         // 1. given : 어떤 상황이 주어졌을 때
         Member member = new Member();

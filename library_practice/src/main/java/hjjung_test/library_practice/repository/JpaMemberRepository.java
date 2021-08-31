@@ -30,6 +30,7 @@ public class JpaMemberRepository implements MemberRepository{
     public Optional<Member> findByName(String name) {
         // 아래 쿼리 문에서 from MEMBER 또는 from member 등으로 쓰면 안되더라...
         // 테이블명과 클래스명을 동일시하여 처리하는 듯?
+        // JPQL 이라는 SQL과 비슷한 JPA의 언어를 사용하여 전달해야 한다고 함
         List<Member> resultList = em.createQuery("select m from Member m where m.name = :name", Member.class)
                 .setParameter("name", name)
                 .getResultList();
@@ -43,7 +44,7 @@ public class JpaMemberRepository implements MemberRepository{
 
         // 위 문장에서 Ctrl + Alt + N 하면 inline 화 가능
         // 또는 Ctrl + Alt + Shift + T 하여 inline 검색 후 엔터
-        return em.createQuery("select m from member m", Member.class).getResultList();
+        return em.createQuery("select m from Member m", Member.class).getResultList();
 
         // >> JPQL 언어 - 객체를 대상으로(Entity를 대상으로) 쿼리를 날림 : SQL로 번역됨
         // select m 을 함 : 엔티티, 즉 객체 자체를 조회함
